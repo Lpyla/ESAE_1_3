@@ -1,0 +1,2 @@
+Run scan.py with python
+need modules ssl,csv,socket,ipaddress
