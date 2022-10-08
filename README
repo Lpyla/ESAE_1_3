@@ -1,5 +1,4 @@
-Run scan.py with python
-need modules ssl,csv,socket,ipaddress
+Run scan.py with python3
+needed modules are ssl,csv,socket,ipaddress
 
-
-work in progress, full scanner with analysis and proper README will be released by this weekend, with scan ran on actual input file
+Syntax for the call is : python3 scan.py <path_to_input.csv> <path_to_blocklist> <path_to_rootstore>
