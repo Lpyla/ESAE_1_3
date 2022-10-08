@@ -1,3 +1,11 @@
+CA : Let's Encrypt issued 36.11111111111111% of the validated certificates 
+CA : Cloudflare, Inc. issued 33.33333333333333% of the validated certificates 
+CA : DigiCert Inc issued 8.333333333333332% of the validated certificates 
+CA : Amazon issued 5.555555555555555% of the validated certificates 
+CA : Google Trust Services LLC issued 5.555555555555555% of the validated certificates 
+CA : Greater Manchester issued 5.555555555555555% of the validated certificates 
+CA : Arizona issued 2.7777777777777777% of the validated certificates 
+CA : ZeroSSL issued 2.7777777777777777% of the validated certificates 
 Total number of domains scanned : 49
 Successful connections : 36, or 73.46938775510205%
 Failed connections (including timeouts) : 13, or 26.53061224489796%

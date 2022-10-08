@@ -88,9 +88,13 @@ if __name__ == "__main__":
     print('Root store : ' + rootStore)
 
     with open(inputFile) as input:
+        counter = 0 
         print('Running scan...')
         reader_input=csv.reader(input)
         for row in reader_input:
+            counter +=1
+            if counter==50:
+                break
             hostname = row[0]
             port = 443
             serverAddress= (hostname, port)
@@ -164,21 +168,21 @@ if __name__ == "__main__":
             if row[1]=="TLSv1":
                 tls10+=1
 
-#Manage the CAs now, need to get the 10 most used
-    i=0
-    while i!=10 and CAs:
-        most_used_CA=max(CAs, key=CAs.get)
-        times_used=CAs[most_used_CA]
-        percentageValidCertsFromCA=times_used/connOK*100
-        print('CA : ' + most_used_CA + ' was used for ' + str(percentageValidCertsFromCA) + '%' + ' of the times when ssl connection was successful')
-        i+=1
-        CAs.pop(most_used_CA)
 
 #write every useful data in a separate file at the end
 #chose to do it in this script (with many precautions, not to run a scan for it to crash at the end)
 #didn't use a JSON or CSV here, since very few lines are needed, and everything remains very humanly readable
 
     with open('analysis.txt','w') as analysis:
+        #get the 10 most used CAs from our dict
+        CACounter = 0 
+        while CACounter !=10 and CAs:
+            most_used_CA=max(CAs, key=CAs.get)
+            times_used=CAs[most_used_CA]
+            percentageValidCertsFromCA=times_used/connOK*100
+            analysis.write('CA : ' + str(most_used_CA) + ' issued ' + str(percentageValidCertsFromCA)+'%'+' of the validated certificates \n')
+            CACounter+=1
+            CAs.pop(most_used_CA)
         analysis.write('Total number of domains scanned : ' + str(totalConn) + '\n')
         analysis.write('Successful connections : ' + str(connOK) + ', or ' +str(successRate) +'%\n')
         analysis.write('Failed connections (including timeouts) : ' + str(connFailed) + ', or ' + str(errorRate) + '%\n')
